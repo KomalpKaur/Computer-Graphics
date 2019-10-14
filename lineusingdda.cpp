@@ -1,38 +1,43 @@
-#include<iostream>
+#include<conio.h>
+#include<stdio.h>
 #include<graphics.h>
-#include<cmath>
-using namespace std;
+#include<iostream.h>
+void main()
+{
 
-void DDA(int X0,int Y0, int X1, int Y1)
-{
-	int dx = X1-X0; 
-    	int dy = Y1-Y0; 
-	//To count no of steps.
-	int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
-	float Xinc = dx / (float) steps; 
-    	float Yinc = dy / (float) steps; 
-	float X = X0; 
-    	float Y = Y0; 
-	//Loop to display all the points between the end points.
-    	for (int i = 0; i <= steps; i++) 
-    	{ 
-        	putpixel (X,Y,100);  
-        	X += Xinc; 
-        	Y += Yinc;           
-        	delay(5);
-              
+int gd=DETECT,gm;
+int x1,x2,y1,y2,i;
+float x,y,steps,dx,dy;
+initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+
+cout<<"Enter first point (x1,y1)";
+cin>>x1>>y1;
+cout<<"Enter second point (x2,y2)";
+cin>>x2>>y2;
+dx=(float)(x2-x1);
+dy=(float)(y2-y1);
+
+if(dx>=dy)
+{steps=dx;
 }
-} 
-int main()
+else
+{steps=dy;
+}
+
+dx=dx/steps;
+dy=dy/steps;
+x=x1;
+y=y1;
+for(i=1;i<=steps;i++)
 {
-int X0,Y0,X1,Y1;
-//Input the co ordinates from the user.
-cout<<"Enter the four coordinates: "<<endl;
-cin>>X0>>Y0>>X1>>Y1;
-int gd = DETECT, gm;
-initgraph(&gd,&gm, NULL);
-DDA(X0,Y0,X1,Y1);
-delay(50000);
+ putpixel(x,y,RED);
+ x+=dx;
+ y+=dy;
+}
+getch();
 closegraph();
-return 0;
+
 }
+
+
+
